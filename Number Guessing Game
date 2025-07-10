@@ -1,0 +1,33 @@
+import random
+
+# Function to generate a random number between 1 and 100
+def getRandomNumber():
+    return random.randrange(1, 101)
+
+# Function to give a hint based on the guess
+def giveHint(number, guess):
+    if guess == number:
+        return "Right"
+    elif abs(guess - number) <= 10:
+        return "Hot"
+    else:
+        return "Cold"
+
+# Function to run the game
+def runGuess():
+    secretNumber = getRandomNumber()
+    while True:
+        try:
+            user_guess = int(input("Enter a number between 1 and 100: "))
+            hint = giveHint(secretNumber, user_guess)
+            if hint == "Right":
+                print("You guessed it Right!")
+                break
+            else:
+                print(hint)
+        except ValueError:
+            print("Please enter a valid integer!")
+
+# Main block
+if __name__ == '__main__':
+    runGuess()
